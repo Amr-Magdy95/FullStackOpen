@@ -10,7 +10,7 @@ sequenceDiagram
     browser->>browser: create a new note with content and date
 
 
-    browser->>browser: add notes on the frontend
+    browser->>browser: add the newly created note to the notes on the frontend
 
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
     activate server
