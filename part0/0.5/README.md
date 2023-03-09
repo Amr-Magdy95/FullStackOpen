@@ -5,18 +5,27 @@ sequenceDiagram
     participant browser
     participant server
 
-    browser->>browser: prevent default behaviour of reloading page on submit
-
-    browser->>browser: create a new note with content and date
-
-
-    browser->>browser: add notes on the frontend
-
-    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
     activate server
-    server-->>browser: returns the newly created note with a success status
+    server-->>browser: HTML document: spa
     deactivate server
 
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the css file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate server
+    server-->>browser: the JavaScript file
+    deactivate server
+
+    Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{"content":"hello","date":"2023-03-09T12:27:03.413Z"}, ...]
+    deactivate server
 
 
 ```
